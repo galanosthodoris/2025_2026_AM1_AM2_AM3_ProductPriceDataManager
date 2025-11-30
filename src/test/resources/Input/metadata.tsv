@@ -1,0 +1,31 @@
+Crude oil (average)	Oil	Energy
+Natural gas avg	Natural Gas	Energy
+Cocoa	Cocoa	AgriculturalProducts
+Coffee (Arabica)	Coffee	AgriculturalProducts
+Tea (avg 3 auctions)	Tea	AgriculturalProducts
+Coconut oil	CocoOil	AgriculturalProducts
+Groundnut oil	GroundnutOil	AgriculturalProducts
+Palm oil	PalmOil	AgriculturalProducts
+Soybeans	Soybeans	AgriculturalProducts
+Soybean oil	SoybeanOil	AgriculturalProducts
+Rice (Thai 5% )	Rice 	FoodStaples
+Wheat (US HRW)	Wheat	FoodStaples
+Banana US	Banana	FoodStaples
+Orange	Orange	FoodStaples
+Beef	Beef	Livestock
+Chicken	Chicken	Livestock
+Sugar (world)	Sugar	IndustrialAgriculture
+Cotton (A Index)	Cotton	IndustrialAgriculture
+Rubber (RSS3)	Rubber	IndustrialAgriculture
+Phosphate rock	Phosphate	Fertilizers
+Potassium chloride	KCI	Fertilizers
+Aluminum	Aluminum	Metals-n-Minerals
+Iron ore (cfr spot)	Iron Ore	Metals-n-Minerals
+Copper	Copper	Metals-n-Minerals
+Lead	Lead	Metals-n-Minerals
+Tin	Tin	Metals-n-Minerals
+Nickel	Nickel	Metals-n-Minerals
+Zinc	Zinc	Metals-n-Minerals
+Gold	Gold	PreciousMetals
+Platinum	Platinum	PreciousMetals
+Silver	Silver	PreciousMetals
