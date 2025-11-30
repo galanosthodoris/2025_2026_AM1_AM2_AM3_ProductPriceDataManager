@@ -90,6 +90,9 @@ public class DataLoader {
 
                 // 3c. Top-10 column (second to last)
                 String top10Field = parts[columnCount - 2].trim();
+                
+                top10Field = top10Field.replace("\"", ""); //gemini request test
+                
                 if (!top10Field.isEmpty()) {
                     String[] topAliases = top10Field.split(",");
                     for (String a : topAliases) {

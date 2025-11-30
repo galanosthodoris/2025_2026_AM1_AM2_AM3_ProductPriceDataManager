@@ -147,10 +147,20 @@ public class MyController implements IController {
         List<ProductHighlightDTO> results = new ArrayList<>();
 
         for (Year y : yearsByValue.values()) {
-            if (y.getTop10Aliases().contains(productAlias)) {
-                for (String h : y.getHeadlines()) {
-                    results.add(new ProductHighlightDTO(y.getYear(), h));
-                }
+            List<String> top10 = y.getTop10Aliases();
+            List<String> headlines = y.getHeadlines();
+
+            // 1. Find the index of the product in the Top 10 list
+            int index = top10.indexOf(productAlias);
+
+            // 2. Check if the product was found AND if a corresponding headline exists
+            // (We check 'index < headlines.size()' to prevent crashes if the file is malformed)
+            if (index != -1 && index < headlines.size()) {
+                
+                // 3. Get ONLY the headline that matches this product's position
+                String specificHeadline = headlines.get(index);
+                
+                results.add(new ProductHighlightDTO(y.getYear(), specificHeadline));
             }
         }
 
@@ -161,17 +171,24 @@ public class MyController implements IController {
     public List<CategoryHighlightDTO> reportCategoryHighlights(String category) {
 
         List<CategoryHighlightDTO> list = new ArrayList<>();
+
         for (Year y : yearsByValue.values()) {
+            List<String> top10 = y.getTop10Aliases();
+            List<String> headlines = y.getHeadlines();
 
-            for (String alias : y.getTop10Aliases()) {
-
+            // Iterate by index so we can match the Product to its specific Headline
+            for (int i = 0; i < top10.size(); i++) {
+                
+                String alias = top10.get(i);
                 Product p = productsByAlias.get(alias);
 
+                // Check if this specific product belongs to the requested category
                 if (p != null && p.getCategory().equals(category)) {
 
-                    for (String headline : y.getHeadlines()) 
-                    {
-                        list.add(new CategoryHighlightDTO(y.getYear(), alias, headline));
+                    // Safety check: make sure a headline exists at this index
+                    if (i < headlines.size()) {
+                        String specificHeadline = headlines.get(i);
+                        list.add(new CategoryHighlightDTO(y.getYear(), alias, specificHeadline));
                     }
                 }
             }
