@@ -119,8 +119,7 @@ public class DataLoader {
 
         } catch (IOException e) {
         	
-        	System.out.println("Current Working Directory: " + new java.io.File(".").getAbsolutePath());
-        	System.err.println("Error reading data file: " + e.getMessage());
+        	 throw new RuntimeException("Failed to load data file: " + filePath, e);
         }
     }
 }

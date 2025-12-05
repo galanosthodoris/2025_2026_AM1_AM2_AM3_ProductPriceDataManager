@@ -1,7 +1,5 @@
 package model;
 
-import model.Product;
-import model.Year;
 
 public class Measurement
 {
