@@ -18,7 +18,7 @@ public class DataLoader {
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 
-            // 1. Read header line
+            // Read header line
             String header = br.readLine();
             if (header == null) {
                 return;  // empty file
@@ -27,16 +27,14 @@ public class DataLoader {
             String[] columns = header.split("\t");
             int columnCount = columns.length;
 
-            // 2. Build a map: column index -> Product
-            //    Match header FULL NAME to Product.getName()
+            // map: column index -> Product
             Map<Integer, Product> columnIndexToProduct = new HashMap<>();
 
             for (int i = 1; i < columnCount - 2; i++) { // skip year (0), last two are top10 & headlines
-                String columnName = columns[i].trim(); // e.g. "Crude oil (average)"
+                String columnName = columns[i].trim(); 
 
                 Product matched = null;
                 for (Product p : productsByAlias.values()) {
-                    // In your Product class, getName() returns fullName
                     if (p.getName().equals(columnName)) {
                         matched = p;
                         break;
@@ -46,24 +44,22 @@ public class DataLoader {
                 if (matched != null) {
                     columnIndexToProduct.put(i, matched);
                 }
-                // if no match found, we silently ignore that column
             }
 
-            // 3. Read data lines
+            // Read data 
             String line;
             while ((line = br.readLine()) != null) {
 
                 if (line.trim().isEmpty()) {
-                    continue; // skip empty lines
+                    continue; 
                 }
 
                 String[] parts = line.split("\t");
                 if (parts.length < columnCount) {
-                    // malformed line, skip
                     continue;
                 }
 
-                // 3a. Year
+                // Year
                 int yearValue = Integer.parseInt(parts[0].trim());
                 Year year = yearsByValue.get(yearValue);
                 if (year == null) {
@@ -71,14 +67,14 @@ public class DataLoader {
                     yearsByValue.put(yearValue, year);
                 }
 
-                // 3b. Measurements for each product column
+                // Measurements
                 for (Map.Entry<Integer, Product> entry : columnIndexToProduct.entrySet()) {
                     int colIndex = entry.getKey();
                     Product product = entry.getValue();
 
                     String valStr = parts[colIndex].trim();
                     if (valStr.isEmpty()) {
-                        continue; // no value for this product/year
+                        continue; 
                     }
 
                     double value = Double.parseDouble(valStr);
@@ -88,10 +84,10 @@ public class DataLoader {
                     year.addMeasurement(m);
                 }
 
-                // 3c. Top-10 column (second to last)
+                // Top-10 column 
                 String top10Field = parts[columnCount - 2].trim();
                 
-                top10Field = top10Field.replace("\"", ""); //gemini request test
+                top10Field = top10Field.replace("\"", ""); //ftiaxnei to oil
                 
                 if (!top10Field.isEmpty()) {
                     String[] topAliases = top10Field.split(",");
@@ -103,10 +99,10 @@ public class DataLoader {
                     }
                 }
 
-                // 3d. Headlines column (last)
+                // Headlines column 
                 String headlineField = parts[columnCount - 1].trim();
                 if (!headlineField.isEmpty()) {
-                    // Headlines are separated by '|'
+                    // Headlines separated by |
                     String[] headlines = headlineField.split("\\|");
                     for (String h : headlines) {
                         String headline = h.trim();
