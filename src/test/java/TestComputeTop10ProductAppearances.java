@@ -6,13 +6,11 @@ public class TestComputeTop10ProductAppearances {
 
     public static void main(String[] args) {
 
-        // ==========================================
-        // SCENARIO 1: Happy Day (Data Loaded + Check Sorting)
-        // ==========================================
-        System.out.println("--- Test 1: Happy Day (Count Appearances & Verify Sorting) ---");
+        //Happy Day (Data Loaded + Check Sorting)
+        System.out.println("Test 1: Happy Day (Count Appearances & Verify Sorting)");
         try {
             MyController controller = new MyController();
-            // Βεβαιώσου για το σωστό path
+            
             controller.initializeFromIni("src/test/resources/test.ini", "\t");
 
             List<Top10AppearanceDTO> results = controller.computeTop10ProductAppearances();
@@ -20,7 +18,6 @@ public class TestComputeTop10ProductAppearances {
             if (results != null && !results.isEmpty()) {
                 System.out.println("[PASS] Successfully computed appearances for " + results.size() + " products.");
 
-                // Έλεγχος Ταξινόμησης: Το προηγούμενο πρέπει να είναι >= από το επόμενο
                 boolean isSortedCorrectly = true;
                 for (int i = 0; i < results.size() - 1; i++) {
                     Top10AppearanceDTO current = results.get(i);
@@ -37,7 +34,6 @@ public class TestComputeTop10ProductAppearances {
                     System.out.println("[PASS] List is correctly sorted by count (Descending).");
                 }
 
-                // Εκτύπωση των Top 3 για επιβεβαίωση
                 System.out.println("       Top 3 Products:");
                 for (int i = 0; i < Math.min(3, results.size()); i++) {
                     System.out.println("       " + (i + 1) + ". " + results.get(i).getName() + " - Appearances: " + results.get(i).getCount());
@@ -54,10 +50,8 @@ public class TestComputeTop10ProductAppearances {
 
         System.out.println();
 
-        // ==========================================
-        // SCENARIO 2: Rainy Day (No Data Loaded)
-        // ==========================================
-        System.out.println("--- Test 2: Rainy Day (No Data Loaded) ---");
+        //Rainy Day (No Data Loaded)
+        System.out.println("Test 2: Rainy Day (No Data Loaded)");
         try {
             MyController emptyController = new MyController();
 

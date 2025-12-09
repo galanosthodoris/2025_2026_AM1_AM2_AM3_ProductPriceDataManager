@@ -7,9 +7,9 @@ public class TestListProducts {
 
         MyController controller = new MyController();
 
-        System.out.println("=== TestListProducts ===");
+        System.out.println("Test 1 : HAPPY DAY");
 
-        // ---------- HAPPY DAY ----------
+        // HAPPY DAY
         try {
             controller.initializeFromIni("src/test/resources/test.ini", "\t");
 
@@ -21,7 +21,6 @@ public class TestListProducts {
                 System.out.println("[FAIL] listProducts() returned 0 products.");
             }
 
-            // check that each product has a valid alias
             boolean aliasesOk = true;
             for (ProductDTO p : products) {
                 if (p.getName() == null || p.getName().trim().isEmpty()) {
@@ -40,7 +39,8 @@ public class TestListProducts {
             System.out.println("[FAIL] Exception when loading valid data: " + e.getMessage());
         }
 
-        // ---------- RAINY DAY ----------
+        // RAINY DAY 
+        System.out.println("Test 2 : RAINY DAY");
         try {
             controller.loadFile("nonexistent.tsv", "\t");
             System.out.println("[FAIL] Expected failure when loading nonexistent file.");

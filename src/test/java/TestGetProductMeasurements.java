@@ -7,9 +7,9 @@ public class TestGetProductMeasurements {
 
         MyController controller = new MyController();
 
-        System.out.println("=== TestGetProductMeasurements ===");
+        System.out.println("Test 1 : HAPPY DAY");
 
-        // ---------------- HAPPY DAY ----------------
+        //HAPPY DAY 
         try {
             controller.initializeFromIni("src/test/resources/test.ini", "\t");
 
@@ -27,9 +27,9 @@ public class TestGetProductMeasurements {
         }
 
 
-        // ---------------- RAINY DAY ----------------
+        System.out.println("Test 2 : RAINY DAY");
         try {
-            ProductDTO fake = controller.getProductMeasurements("DoesNotExist");
+            ProductDTO fake = controller.getProductMeasurements("NotExist");
 
             if (fake == null) {
                 System.out.println("[PASS] Correctly returned null for nonexistent product.");

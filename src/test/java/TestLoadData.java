@@ -9,18 +9,17 @@ public class TestLoadData {
 
         MyController controller = new MyController();
 
-        // --- Happy Day ---
+        // Happy Day
+        System.out.println("Test 1 : HAPPY DAY");
         try {
             controller.initializeFromIni("src/test/resources/test.ini", "\t");
 
-            // check years
             if (controller.listYears().size() > 0) {
                 System.out.println("[PASS] Data loaded, years found: " + controller.listYears().size());
             } else {
                 System.out.println("[FAIL] Data loaded but no years were found.");
             }
 
-            // check at least 1 product has measurements
             boolean foundMeasurements = false;
 
             for (ProductDTO p : controller.listProducts().stream()
@@ -42,7 +41,8 @@ public class TestLoadData {
             System.out.println("[FAIL] Should have loaded sample data: " + e.getMessage());
         }
 
-        // --- Rainy Day: wrong data file ---
+        // Rainy Day
+        System.out.println("Test 2 : RAINY DAY");
         try {
             controller.initializeFromIni("src/test/resources/nonexistent.ini", "\t");
             System.out.println("[FAIL] Should NOT load fake data.");

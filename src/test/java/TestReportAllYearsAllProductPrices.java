@@ -7,13 +7,10 @@ public class TestReportAllYearsAllProductPrices {
 
     public static void main(String[] args) {
 
-        // ==========================================
-        // SCENARIO 1: Happy Day (Data Loaded + Verify Full Dataset)
-        // ==========================================
-        System.out.println("--- Test 1: Happy Day (Retrieve All Years & Data) ---");
+        // Happy Day (Data Loaded + Verify Full Dataset)
+        System.out.println("Test 1: Happy Day (Retrieve All Years & Data)");
         try {
             MyController controller = new MyController();
-            // Βεβαιώσου για το σωστό path
             controller.initializeFromIni("src/test/resources/test.ini", "\t");
 
             List<YearDTO> allYears = controller.reportAllYearsAllProductPrices();
@@ -21,11 +18,9 @@ public class TestReportAllYearsAllProductPrices {
             if (allYears != null && !allYears.isEmpty()) {
                 System.out.println("[PASS] Successfully retrieved data for " + allYears.size() + " years.");
 
-                // Έλεγχος πληρότητας για το πρώτο έτος της λίστας
                 YearDTO firstYear = allYears.get(0);
                 System.out.println("       Sample Year: " + firstYear.getYear());
                 
-                // Ελέγχουμε αν έχει μετρήσεις (π.χ. τιμές για Oil, Gold κτλ)
                 List<MeasurementDTO> measurements = firstYear.getMeasurements();
                 if (measurements != null && !measurements.isEmpty()) {
                     System.out.println("[PASS] Year " + firstYear.getYear() + " contains " + measurements.size() + " measurements.");
@@ -33,7 +28,6 @@ public class TestReportAllYearsAllProductPrices {
                     System.out.println("[FAIL] Year " + firstYear.getYear() + " has NO measurements (empty list).");
                 }
 
-                // Ελέγχουμε αν έχει Headlines
                 if (firstYear.getTop10Headlines() != null && !firstYear.getTop10Headlines().isEmpty()) {
                     System.out.println("[PASS] Year " + firstYear.getYear() + " contains headlines.");
                 } else {
@@ -49,12 +43,8 @@ public class TestReportAllYearsAllProductPrices {
             e.printStackTrace();
         }
 
-        System.out.println();
-
-        // ==========================================
-        // SCENARIO 2: Rainy Day (No Data Loaded)
-        // ==========================================
-        System.out.println("--- Test 2: Rainy Day (No Data Loaded) ---");
+        // Rainy Day (No Data Loaded)
+        System.out.println("Test 2: Rainy Day (No Data Loaded)");
         try {
             MyController emptyController = new MyController();
 

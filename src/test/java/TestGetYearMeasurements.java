@@ -7,7 +7,7 @@ public class TestGetYearMeasurements {
 
         MyController controller = new MyController();
 
-        // ---------- HAPPY DAY ----------
+        System.out.println("Test 1 : HAPPY DAY");
         controller.initializeFromIni("src/test/resources/test.ini", "\t");
 
         YearDTO y = controller.getYearMeasurements(1960);
@@ -16,8 +16,8 @@ public class TestGetYearMeasurements {
         } else {
             System.out.println("[FAIL] Expected measurements for year 1960.");
         }
-
-        // ---------- RAINY DAY ----------
+        
+        System.out.println("Test 2 : RAINY DAY");
         YearDTO missing = controller.getYearMeasurements(9999);
 
         if (missing == null) {

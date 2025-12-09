@@ -7,7 +7,8 @@ public class TestListYears {
 
         MyController controller = new MyController();
 
-        // --- Happy Day: load valid INI ---
+        // Happy Day: load valid INI 
+        System.out.println("Test 1 : HAPPY DAY");
         try {
             controller.initializeFromIni("src/test/resources/test.ini", "\t");
 
@@ -23,7 +24,10 @@ public class TestListYears {
             System.out.println("[FAIL] Should NOT have thrown exception: " + e.getMessage());
         }
 
-        // --- Rainy Day: no load performed ---
+        // Rainy Day: no load performed
+        
+        System.out.println("Test 1 : RAINT DAY");
+        
         try {
             MyController emptyController = new MyController();
 

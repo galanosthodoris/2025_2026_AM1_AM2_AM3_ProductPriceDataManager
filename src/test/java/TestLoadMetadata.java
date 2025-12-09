@@ -6,7 +6,8 @@ public class TestLoadMetadata {
 
         MyController controller = new MyController();
 
-        // ----- HAPPY DAY: Correct INI -----
+        // HAPPY DAY: Correct INI 
+        System.out.println("Test 1 : HAPY DAY ");
         try {
             controller.initializeFromIni("src/test/resources/test.ini", "\t");
             System.out.println("[PASS] INI + metadata loaded successfully.");
@@ -14,7 +15,8 @@ public class TestLoadMetadata {
             System.out.println("[FAIL] Should have loaded correctly: " + e.getMessage());
         }
 
-        // ----- RAINY DAY: wrong INI path -----
+        // RAINY DAY: wrong INI path
+        System.out.println("Test 2 : RAINY DAY");
         try {
             controller.initializeFromIni("src/test/resources/does_not_exist.ini", "\t");
             System.out.println("[FAIL] Should NOT load incorrect INI.");
